@@ -55,7 +55,33 @@ def takeCommand():
             return "None"
         return query
     
-print("ok")
+
+#Modular Coding best practice
+if __name__=="__main__":
+    print("Welcome to the code")
+    query = takeCommand().lower()
+    print(query)
+
+    if "wikipedia" in query:
+        speak("Searching Wikipedia")
+        query = query.replace("wikipedia","")
+        #print(query)
+        results = wikipedia.summary(query, sentences = 2)
+        speak("According to Wikipedia")
+        print(results)
+        speak(results)
+
+    elif "youtube" in query:
+        speak("Opening Youtube")
+        webbrowser.open("youtube.com")
+
+    elif "google" in query:
+        speak("Opening Google")
+        webbrowser.open("google.com")   
+
+    elif "github" in query:
+        speak("Opening Github")
+        webbrowser.open("github.com")    
 
             
 
