@@ -55,7 +55,7 @@ def takeCommand():
             return "None"
         return query
     
-
+print("ok")
 
             
 
