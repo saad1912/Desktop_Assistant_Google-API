@@ -3,3 +3,7 @@ pyttsx3
 PyAudio
 wikipedia
 simple-webbrowser
+streamlit
+pipwin
+gTTS
+google-generativeai

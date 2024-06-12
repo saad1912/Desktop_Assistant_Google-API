@@ -19,7 +19,7 @@ voices = engine.getProperty('voices')
 
 
 engine.setProperty('voice', voices[0].id) #Setting Male voice for Desktop Application
-engine.setProperty('rate', 150)#Speed percent (defaul is 200 words per minute)
+engine.setProperty('rate', 200)#Speed percent (defaul is 200 words per minute)
 
 
 #Speak function
@@ -44,7 +44,7 @@ def takeCommand():
     with sr.Microphone() as source:
         print("Listening....")
         r.pause_threshold = 1 #Amount of time (in seconds) the recognizer will wait for a pause in speech before considering the end of a phrase.
-        audio = r.listen(source)
+        audio = r.listen(source, timeout = 5)
 
         try:
             print("Recognizing....")
@@ -55,34 +55,59 @@ def takeCommand():
             return "None"
         return query
     
+    
+def wish_me():
+    hour = (datetime.datetime.now().hour)  
+    if hour>=0 and hour<12:
+        speak("Good Morning sir. How are you doing")
+    
+    elif hour>=12 and hour<18:
+        speak("Good Afternoon sir, how are you doing")
+    
+    else:
+        speak("Good evening Sir, how are you doing")
+    
+    speak("I am binod, tell me how I can help you")
+
 
 #Modular Coding best practice
 if __name__=="__main__":
-    print("Welcome to the code")
-    query = takeCommand().lower()
-    print(query)
 
-    if "wikipedia" in query:
-        speak("Searching Wikipedia")
-        query = query.replace("wikipedia","")
-        #print(query)
-        results = wikipedia.summary(query, sentences = 2)
-        speak("According to Wikipedia")
-        print(results)
-        speak(results)
+    wish_me()
+    while 1: 
+        print("Welcome to the code")
+        query = takeCommand().lower()
+        print(query)
 
-    elif "youtube" in query:
-        speak("Opening Youtube")
-        webbrowser.open("youtube.com")
+        if "wikipedia" in query:
+            speak("Searching Wikipedia")
+            query = query.replace("wikipedia","")
+            #print(query)
+            results = wikipedia.summary(query, sentences = 2)
+            speak("According to Wikipedia")
+            print(results)
+            speak(results)
 
-    elif "google" in query:
-        speak("Opening Google")
-        webbrowser.open("google.com")   
+        elif "youtube" in query:
+            speak("Opening Youtube")
+            webbrowser.open("youtube.com")
 
-    elif "github" in query:
-        speak("Opening Github")
-        webbrowser.open("github.com")    
+        elif "google" in query:
+            speak("Opening Google")
+            webbrowser.open("google.com")   
 
+        elif "github" in query:
+            speak("Opening Github")
+            webbrowser.open("github.com")
+
+        elif "time" in query:
+            strTime = datetime.datetime.now().strftime("%H:%M:%S") 
+            speak(f"Sir, the time is {strTime}")
+
+        elif "good bye" in query:
+            speak("Ok sir, I am always there for you")
+            break   
+        
             
 
 

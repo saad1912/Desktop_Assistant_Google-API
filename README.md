@@ -24,4 +24,9 @@ pip install -r requirement.txt
 
 
 
+```bash
+streamlit run app.py
+```
+
+
 
