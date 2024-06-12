@@ -22,7 +22,7 @@ conda activate assistant1
 pip install -r requirement.txt
 ```
 
-
+5. Streamlit command
 
 ```bash
 streamlit run app.py
